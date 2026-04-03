@@ -1027,3 +1027,41 @@ section {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* Gravity FAB Toggle */
+.gravity-fab {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    width: 45px;
+    height: 45px;
+    background: rgba(15, 15, 30, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 212, 230, 0.3);
+    border-radius: 50%;
+    color: var(--neon-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9999;
+    transition: var(--transition);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.gravity-fab:hover {
+    transform: scale(1.1) rotate(15deg);
+    background: rgba(0, 212, 230, 0.1);
+    box-shadow: 0 0 20px rgba(0, 212, 230, 0.2);
+}
+
+.gravity-fab.active {
+    color: var(--neon-purple);
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 20px rgba(176, 38, 255, 0.3);
+}
+
+.gravity-fab i {
+    pointer-events: none;
+    font-size: 1.1rem;
+}
