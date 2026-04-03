@@ -97,11 +97,11 @@ avatarScene.add(avatarMeshWire);
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 avatarScene.add(ambientLight);
 
-const pointLight1 = new THREE.PointLight(0x00f3ff, 2, 50);
+const pointLight1 = new THREE.PointLight(0x00f3ff, 4, 100);
 pointLight1.position.set(5, 5, 5);
 avatarScene.add(pointLight1);
 
-const pointLight2 = new THREE.PointLight(0xb026ff, 2, 50);
+const pointLight2 = new THREE.PointLight(0xb026ff, 4, 100);
 pointLight2.position.set(-5, -5, 5);
 avatarScene.add(pointLight2);
 
