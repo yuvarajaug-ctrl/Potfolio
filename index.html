@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuvaraj P — AI/ML & Software Developer</title>
+    <meta name="description" content="Yuvaraj P — AI/ML & Software Developer specializing in Python, Java, and scalable solutions. Explore my projects, skills, and experience.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body>
+    <!-- ThreeJS Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- UI Overlay container -->
+    <div id="app-container" class="gravity-off">
+        <!-- Navigation -->
+        <nav class="navbar float-element">
+            <div class="logo">YUVARAJ</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Journey</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions" style="display: flex; gap: 15px; align-items: center;">
+                <div id="user-info" class="user-info" style="display:none;">
+                    <img id="user-avatar" src="" alt="Avatar" class="avatar-img">
+                    <span id="user-name-display" class="user-name"></span>
+                    <button id="logout-btn" class="btn-small btn-glow auth-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
+                </div>
+                <button id="gravity-toggle" class="btn-glow">
+                    <i class="fa-solid fa-rocket"></i> Gravity: <span id="gravity-status">OFF</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1 class="float-element">Hi, I'm <span class="text-neon">Yuvaraj</span></h1>
+                <h2 class="subtitle float-element delay-1">AI/ML & Software Developer</h2>
+                <p class="hero-tagline float-element delay-2">Focused on solving real-world problems using efficient and scalable solutions.</p>
+                <div class="cta-group" style="display: flex; gap: 15px; margin-top: 2rem; flex-wrap: wrap; align-items: center;">
+                    <a href="#projects" class="btn-cta float-element delay-2" style="margin-top: 0;">View My Work</a>
+                    
+                    <!-- Unified Resume Dropdown -->
+                    <div class="resume-dropdown float-element delay-3">
+                        <button class="btn-cta btn-google" id="resume-btn" style="margin-top: 0; min-width: 160px;">
+                            <i class="fa-solid fa-file-pdf"></i> Resume <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 8px;"></i>
+                        </button>
+                        <div class="dropdown-content glass-panel">
+                            <a href="./assets/Yuvaraj-Resume.pdf?v=1.1" target="_blank" type="application/pdf">
+                                <i class="fa-solid fa-eye"></i> View Resume
+                            </a>
+                            <a href="./assets/Yuvaraj-Resume.pdf" download="Yuvaraj-Resume.pdf">
+                                <i class="fa-solid fa-file-arrow-down"></i> Download PDF
+                            </a>
+                        </div>
+                    </div>
+
+                    <button id="google-login-btn" class="btn-cta btn-google float-element delay-4" style="margin-top: 0; font-size: 0.85rem; padding: 0.8rem 1.5rem;">
+                        <i class="fa-brands fa-google"></i> Continue with Google
+                    </button>
+                </div>
+            </div>
+            <!-- ThreeJS Object container for Avatar -->
+            <div id="hero-3d-avatar" class="float-element"></div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section fade-in-section">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">A quick overview of who I am and what I bring to the table.</p>
+            <div class="about-grid">
+                <div class="about-card glass-panel float-card">
+                    <p>I'm a software developer with hands-on experience in Python, AI/ML, and web development. I enjoy building clean, efficient solutions — from machine learning models to full-stack web applications. Currently pursuing my MCA, I'm eager to contribute to teams that value innovation and quality engineering.</p>
+                </div>
+                <div id="cert-card" class="about-card glass-panel float-card delay-1" style="cursor: pointer;" title="View Certifications">
+                    <div class="stat">
+                        <h3>10+</h3>
+                        <p>Certifications</p>
+                    </div>
+                </div>
+                <div class="about-card glass-panel float-card delay-2">
+                    <div class="stat">
+                        <h3>10+</h3>
+                        <p>Projects</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section fade-in-section">
+            <h2 class="section-title">Skills</h2>
+            <div class="orbit-container">
+                <div class="center-planet glass-panel neon-glow">Skills</div>
+                <div class="orbit orbit-1">
+                    <div class="orbit-icon icon-java"><i class="fa-brands fa-java"></i></div>
+                    <div class="orbit-icon icon-python"><i class="fa-brands fa-python"></i></div>
+                </div>
+                <div class="orbit orbit-2">
+                    <div class="orbit-icon icon-sql"><i class="fa-solid fa-database"></i></div>
+                    <div class="orbit-icon icon-js"><i class="fa-brands fa-js"></i></div>
+                </div>
+                <div class="orbit orbit-3">
+                    <div class="orbit-icon icon-html"><i class="fa-brands fa-html5"></i></div>
+                    <div class="orbit-icon icon-cpp"><span style="font-weight: 800; font-family: var(--font-heading); font-size: 1.1rem;">C++</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section fade-in-section">
+            <h2 class="section-title">Projects</h2>
+            <div class="project-grid">
+                <!-- Project 1: Portfolio -->
+                <div class="project-card glass-panel float-card" data-project="project1">
+                    <div class="project-card-inner">
+                        <div class="project-card-content">
+                            <h3>Portfolio</h3>
+                            <p>A futuristic 3D portfolio featuring gravitational physics workflows, custom algorithms, and dynamic components.</p>
+                            <span class="tech-tag">HTML/CSS</span> <span class="tech-tag">JavaScript</span> <span class="tech-tag">ThreeJS</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2: Sketch to Code GenAI IDE -->
+                <div class="project-card glass-panel float-card delay-1" data-project="project2">
+                    <div class="project-card-inner">
+                        <div class="project-card-content">
+                            <h3>Sketch to code GenAI IDE</h3>
+                            <p>Led and contributed to building web applications and AI/ML models to translate drawn sketches directly into working UI code.</p>
+                            <span class="tech-tag">Python</span> <span class="tech-tag">AI/ML</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3: Image Editing App -->
+                <div class="project-card glass-panel float-card delay-2" data-project="project3">
+                    <div class="project-card-inner">
+                        <div class="project-card-content">
+                            <h3>Image Editing App</h3>
+                            <p>A comprehensive editing tool supporting cropping, resizing, and filtering using Pilllow/OpenCV.</p>
+                            <span class="tech-tag">Python OpenCV</span> <span class="tech-tag">Pillow</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 4: Smart Weather App -->
+                <div class="project-card glass-panel float-card delay-3" data-project="project4">
+                    <div class="project-card-inner">
+                        <div class="project-card-content">
+                            <h3>Smart Weather App</h3>
+                            <p>Real-time weather forecast display integrating external APIs presented on a Tkinter GUI.</p>
+                            <span class="tech-tag">Python</span> <span class="tech-tag">Tkinter</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 5: Expense Tracker App -->
+                <div class="project-card glass-panel float-card delay-4" data-project="project5">
+                    <div class="project-card-inner">
+                        <div class="project-card-content">
+                            <h3>Expense Tracker App</h3>
+                            <p>Manages daily expenses with add/edit/delete functionality &amp; generates rich monthly reports.</p>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="experience" class="timeline-section fade-in-section">
+            <h2 class="section-title">Experience & Education</h2>
+            <div class="timeline">
+                <div class="timeline-item float-card">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-panel">
+                        <h3>AI/ML Intern</h3>
+                        <p class="timeline-date">Tech Mahindra | Jan 2026 - Mar 2026</p>
+                        <p>Gained good experience in AI/ML and SQL while assisting in real-world software projects. Collaborated with senior developers for debugging and optimization.</p>
+                    </div>
+                </div>
+                <div class="timeline-item float-card delay-1">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-panel">
+                        <h3>Master of Computer Application</h3>
+                        <p class="timeline-date">UCE, Anna University, Trichy | 2024 - Present</p>
+                        <p>Pursuing advanced concepts in software development, core ML engineering, and application structures.</p>
+                    </div>
+                </div>
+                <div class="timeline-item float-card delay-2">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-panel">
+                        <h3>Bachelor of Computer Application</h3>
+                        <p class="timeline-date">Govt Arts and Science College, Dharmapuri | 2021 - 2024</p>
+                        <p>Graduated with strong foundations in database management, core programming, and algorithms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section fade-in-section">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Have a question or want to work together? Drop me a message.</p>
+            <form class="contact-form glass-panel float-card">
+                <!-- Connected to Web3Forms -->
+                <input type="hidden" name="access_key" value="714050e7-e3d5-44bf-9e86-2446fb8dcc71">
+                
+                <div class="input-group">
+                    <input type="text" name="name" required>
+                    <label>Name</label>
+                    <div class="input-border"></div>
+                </div>
+                <div class="input-group">
+                    <input type="email" name="email" required>
+                    <label>Email</label>
+                    <div class="input-border"></div>
+                </div>
+                <div class="input-group">
+                    <textarea name="message" required rows="4"></textarea>
+                    <label>Message</label>
+                    <div class="input-border"></div>
+                </div>
+                <button type="submit" class="btn-glow submit-btn">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+            
+            <div class="social-links float-element delay-1">
+                <a href="https://github.com/yuvarajaug-ctrl" target="_blank" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/yuvaraj-p-03b7512a9" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:yuvarajaug@gmail.com" class="social-icon"><i class="fa-solid fa-envelope"></i></a>
+                <a href="tel:+918300458481" class="social-icon"><i class="fa-solid fa-phone"></i></a>
+                <!-- Hidden Admin Access -->
+                <a href="admin.html" class="social-icon" style="border-color: transparent; opacity: 0.3; margin-left: 20px;" title="Commander Access"><i class="fa-solid fa-terminal"></i></a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal glass-panel">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Project Title</h2>
+            <p id="modal-desc">Detailed project description goes here.</p>
+            <div class="modal-actions">
+                <!-- Buttons are dynamically populated by app.js -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Certificates Modal -->
+    <div id="cert-modal" class="modal glass-panel">
+        <div class="modal-content cert-modal-content">
+            <span class="close-cert-modal close-modal">&times;</span>
+            <h2 id="cert-modal-title" style="margin-bottom: 20px;">My Certifications</h2>
+            <div class="cert-grid">
+                <a href="certificates/AI-900.jpg" target="_blank"><img src="certificates/AI-900.jpg" alt="AI-900" class="cert-img"></a>
+                <a href="certificates/Azure AI.jpg" target="_blank"><img src="certificates/Azure AI.jpg" alt="Azure AI" class="cert-img"></a>
+                <a href="certificates/EXCEL.jpg" target="_blank"><img src="certificates/EXCEL.jpg" alt="EXCEL" class="cert-img"></a>
+                <a href="certificates/Java.jpg" target="_blank"><img src="certificates/Java.jpg" alt="Java" class="cert-img"></a>
+                <a href="certificates/Java_oracle.jpg" target="_blank"><img src="certificates/Java_oracle.jpg" alt="Java Oracle" class="cert-img"></a>
+                <a href="certificates/Power BI.jpg" target="_blank"><img src="certificates/Power BI.jpg" alt="Power BI" class="cert-img"></a>
+                <a href="certificates/Python.jpg" target="_blank"><img src="certificates/Python.jpg" alt="Python" class="cert-img"></a>
+                <a href="certificates/Quantom Computing.jpg" target="_blank"><img src="certificates/Quantom Computing.jpg" alt="Quantum Computing" class="cert-img"></a>
+                <a href="certificates/RAG Training.jpg" target="_blank"><img src="certificates/RAG Training.jpg" alt="RAG Training" class="cert-img"></a>
+                <a href="certificates/SQL Advance.jpg" target="_blank"><img src="certificates/SQL Advance.jpg" alt="SQL Advance" class="cert-img"></a>
+                <a href="certificates/SQL Beginner.jpg" target="_blank"><img src="certificates/SQL Beginner.jpg" alt="SQL Beginner" class="cert-img"></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor-glow"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast glass-panel">
+        <i class="fa-solid fa-circle-check"></i> <span id="toast-msg">Message</span>
+    </div>
+
+    <!-- Scripts -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <!-- Social Sign-In Prompt (One-Tap Style) -->
+    <div id="social-prompt" class="social-prompt">
+        <div class="prompt-header">
+            <span class="text-neon" style="font-size: 0.8rem; font-weight: 600;">PERSONALIZED ACCESS</span>
+            <button class="prompt-close" id="prompt-close">&times;</button>
+        </div>
+        <div class="prompt-content">
+            <div class="prompt-icon">
+                <i class="fa-solid fa-user-astronaut"></i>
+            </div>
+            <div class="prompt-text">
+                <h4 id="prompt-title">Sign in with Google</h4>
+                <p>Track your visit and get personalized project insights.</p>
+            </div>
+        </div>
+        <button id="prompt-login-btn" class="btn-prompt-login">
+            <i class="fa-brands fa-google"></i> Continue with Google
+        </button>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script type="module" src="js/firebase-auth.js"></script>
+    <script type="module" src="js/three-scene.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

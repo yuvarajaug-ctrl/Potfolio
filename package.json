@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-yuvaraj",
+  "version": "1.0.0",
+  "description": "Futuristic 3D Portfolio with Firebase integration.",
+  "scripts": {
+    "start": "npx -y live-server .",
+    "deploy": "firebase deploy --only hosting"
+  },
+  "devDependencies": {
+    "firebase-tools": "latest"
+  }
+}

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .admin-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 3rem;
+        }
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            min-width: 250px;
+        }
+        .stat-box h3 {
+            font-size: 4rem;
+            color: var(--neon-cyan);
+            margin-bottom: 0.5rem;
+        }
+        .locked-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+        }
+        #dashboard-content {
+            display: none;
+        }
+        /* Restore default cursor — admin page doesn't use the custom cursor elements */
+        body, * {
+            cursor: auto !important;
+        }
+        a, button, .btn-glow, .btn-cta {
+            cursor: pointer !important;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <div id="app-container" class="gravity-off" style="padding: 5%;">
+        
+        <nav class="navbar float-element" style="position: relative; margin-bottom: 3rem; padding: 1rem 0; background: transparent;">
+            <div class="logo">ADMIN PANEL</div>
+            <a href="index.html" class="btn-glow"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+        </nav>
+
+        <!-- Access Denied Screen -->
+        <div id="locked-state" class="locked-screen float-card">
+            <i class="fa-solid fa-lock" style="font-size: 4rem; color: var(--neon-purple); margin-bottom: 1rem;"></i>
+            <h2 class="text-neon" style="font-size: 2.5rem;">Access Restricted</h2>
+            <p style="margin-bottom: 2rem;">Please authenticate to access the dashboard.</p>
+            <button id="admin-login-btn" class="btn-cta btn-google"><i class="fa-brands fa-google"></i> Sign in with Google</button>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div id="dashboard-content">
+            <div class="admin-header fade-in-section is-visible">
+                <h1 class="text-neon">Visitor Analytics</h1>
+                <p>Overview of portfolio visitors and login activity.</p>
+            </div>
+
+            <div class="admin-stats fade-in-section is-visible">
+                <div class="stat-box glass-panel float-element">
+                    <h3 id="total-users">0</h3>
+                    <p>Total Visitors</p>
+                </div>
+                <div class="stat-box glass-panel float-element delay-1">
+                    <h3 id="recent-login">-</h3>
+                    <p>Latest Login</p>
+                </div>
+            </div>
+
+            <div class="glass-panel fade-in-section is-visible float-card delay-2">
+                <h2 style="margin-bottom: 1rem; color: var(--neon-purple);">Visitor Log</h2>
+                <div style="overflow-x: auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Last Login</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-table-body">
+                            <!-- Dynamic Content -->
+                            <tr>
+                                <td colspan="3" style="text-align: center;">Loading data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background ThreeJS (reused for visual consistency) -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        const bgCanvas = document.getElementById('bg-canvas');
+        const bgScene = new THREE.Scene();
+        bgScene.background = new THREE.Color(0x050510);
+        bgScene.fog = new THREE.FogExp2(0x050510, 0.001);
+        const bgCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 2000);
+        bgCamera.position.z = 1000;
+        const bgRenderer = new THREE.WebGLRenderer({ canvas: bgCanvas, antialias: true });
+        bgRenderer.setSize(window.innerWidth, window.innerHeight);
+
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 400; // Lighter for admin
+        const posArray = new Float32Array(particlesCount * 3);
+        const colorsArray = new Float32Array(particlesCount * 3);
+        const color1 = new THREE.Color(0x00f3ff);
+        const color2 = new THREE.Color(0xb026ff);
+
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 3000;
+        }
+        for(let i = 0; i < particlesCount; i++) {
+            const mixedColor = color1.clone().lerp(color2, Math.random());
+            colorsArray[i * 3] = mixedColor.r;
+            colorsArray[i * 3 + 1] = mixedColor.g;
+            colorsArray[i * 3 + 2] = mixedColor.b;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 2, vertexColors: true, blending: THREE.AdditiveBlending, transparent: true, opacity: 0.35
+        });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        bgScene.add(particlesMesh);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particlesMesh.rotation.y += 0.00015;
+            particlesMesh.rotation.x += 0.00008;
+            bgRenderer.render(bgScene, bgCamera);
+        }
+        animate();
+    </script>
+
+    <!-- Admin Firebase Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+        // Must match firebase-auth.js configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDtQHY3pHyuo-iyCXWIydxWrW8OyGSPCtU",
+          authDomain: "portfolio-tracker-0.firebaseapp.com",
+          projectId: "portfolio-tracker-0",
+          storageBucket: "portfolio-tracker-0.firebasestorage.app",
+          messagingSenderId: "143411456460",
+          appId: "1:143411456460:web:270bd6f98ce173726ad569"
+        };
+
+        let app, auth, db;
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+        } catch (error) {
+            console.error(error);
+        }
+
+        const provider = new GoogleAuthProvider();
+        const loginBtn = document.getElementById('admin-login-btn');
+        const lockedState = document.getElementById('locked-state');
+        const dashboard = document.getElementById('dashboard-content');
+        const tableBody = document.getElementById('user-table-body');
+        const totalUsersEl = document.getElementById('total-users');
+        const recentLoginEl = document.getElementById('recent-login');
+
+        if(auth) {
+            loginBtn.addEventListener('click', async () => {
+                try {
+                    await signInWithPopup(auth, provider);
+                } catch(e) {
+                    console.error("Firebase Login Error: ", e);
+                    if(e.code === 'auth/invalid-api-key') {
+                        alert("Configure Firebase parameters!");
+                    } else {
+                        alert("Login Failed. Ensure you have enabled Google Authentication in Firebase Console! Error: " + e.message);
+                    }
+                }
+            });
+
+            const ADMIN_EMAIL = 'yuvarajaug@gmail.com';
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    if (user.email === ADMIN_EMAIL) {
+                        // Authorized Commander
+                        lockedState.style.display = 'none';
+                        dashboard.style.display = 'block';
+                        loadDashboardData();
+                    } else {
+                        // Unauthorized Payload
+                        lockedState.innerHTML = `
+                            <i class="fa-solid fa-triangle-exclamation" style="font-size: 4rem; color: #ff0055; margin-bottom: 1rem;"></i>
+                            <h2 class="text-neon" style="font-size: 2.5rem; -webkit-text-stroke: 1px #ff0055;">Access Denied</h2>
+                            <p style="margin-bottom: 2rem; color: #ff0055;">You do not have admin privileges. Redirecting...</p>
+                        `;
+                        lockedState.style.display = 'flex';
+                        dashboard.style.display = 'none';
+                        
+                        // Boot the intruder after 3.5 seconds
+                        setTimeout(() => {
+                            signOut(auth).then(() => {
+                                window.location.href = "index.html";
+                            });
+                        }, 3500);
+                    }
+                } else {
+                    lockedState.style.display = 'flex';
+                    dashboard.style.display = 'none';
+                }
+            });
+        }
+
+        async function loadDashboardData() {
+            try {
+                // Fetch users ordered by lastLogin descending
+                const q = query(collection(db, "visitors"), orderBy("lastLogin", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                tableBody.innerHTML = '';
+                let count = 0;
+                let mostRecent = null;
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    count++;
+                    
+                    // Format Date safely
+                    let dateStr = "N/A";
+                    if(data.lastLogin) {
+                        const date = data.lastLogin.toDate();
+                        dateStr = date.toLocaleString();
+                        if(!mostRecent) mostRecent = date; 
+                    }
+
+                    const row = `
+                        <tr>
+                            <td>
+                                <img src="${data.photoURL || ''}" class="admin-avatar" alt="pic">
+                                ${data.name || 'Unknown'}
+                            </td>
+                            <td>${data.email || 'N/A'}</td>
+                            <td style="color: var(--text-muted);">${dateStr}</td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+
+                totalUsersEl.innerText = count;
+                recentLoginEl.innerText = mostRecent ? mostRecent.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'None';
+
+            } catch(e) {
+                console.error("Error drawing table: ", e);
+                tableBody.innerHTML = `<tr><td colspan="3" style="color:red;text-align:center;">Failed to load data. Check Firebase configuration.</td></tr>`;
+            }
+        }
+    </script>
+</body>
+</html>
