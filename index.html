@@ -17,7 +17,7 @@
     <canvas id="bg-canvas"></canvas>
 
     <!-- UI Overlay container -->
-    <div id="app-container" class="gravity-off">
+    <div id="app-container" class="gravity-on">
         <!-- Navigation -->
         <nav class="navbar float-element">
             <div class="logo">YUVARAJ</div>
@@ -35,11 +35,13 @@
                     <span id="user-name-display" class="user-name"></span>
                     <button id="logout-btn" class="btn-small btn-glow auth-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
                 </div>
-                <button id="gravity-toggle" class="btn-glow">
-                    <i class="fa-solid fa-rocket"></i> Gravity: <span id="gravity-status">OFF</span>
-                </button>
             </div>
         </nav>
+
+        <!-- Small Gravity FAB (Bottom Left) -->
+        <button id="gravity-toggle" class="gravity-fab" title="Toggle Anti-Gravity Effects">
+            <i class="fa-solid fa-magnet"></i>
+        </button>
 
         <!-- Hero Section -->
         <section id="home" class="hero-section">
@@ -276,10 +278,7 @@
         </div>
     </div>
     
-    <!-- Custom Cursor -->
-    <div class="cursor-glow"></div>
-    <div class="cursor-dot"></div>
-
+    
     <!-- Toast Notification -->
     <div id="toast" class="toast glass-panel">
         <i class="fa-solid fa-circle-check"></i> <span id="toast-msg">Message</span>

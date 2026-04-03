@@ -31,7 +31,6 @@ body {
     font-family: var(--font-body);
     color: var(--text-main);
     overflow-x: hidden;
-    cursor: none; /* Custom cursor used */
 }
 
 /* ThreeJS Background Canvas */
@@ -50,43 +49,6 @@ body {
     position: relative;
     z-index: 1;
     width: 100%;
-}
-
-/* Custom Cursor */
-.cursor-dot {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 8px;
-    height: 8px;
-    background-color: var(--neon-cyan);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 6px var(--neon-cyan);
-    transition: width 0.2s, height 0.2s;
-}
-
-.cursor-glow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 35px;
-    height: 35px;
-    border: 1px solid rgba(0, 212, 230, 0.4);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, transform 0.1s ease-out;
-    box-shadow: 0 0 12px rgba(0, 212, 230, 0.2);
-}
-
-a:hover ~ .cursor-glow, button:hover ~ .cursor-glow, .glass-panel:hover ~ .cursor-glow {
-    width: 60px;
-    height: 60px;
-    background-color: rgba(0, 243, 255, 0.1);
 }
 
 /* Typography */
@@ -255,8 +217,8 @@ p {
 
 /* Sections Global */
 section {
-    min-height: 100vh;
-    padding: 6rem 5%;
+    min-height: auto;
+    padding: 4rem 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;

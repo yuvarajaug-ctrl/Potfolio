@@ -1,48 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Custom Cursor Logic ---
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorGlow = document.querySelector('.cursor-glow');
-    
-    window.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
-        
-        // Use requestAnimationFrame for smoother performance
-        requestAnimationFrame(() => {
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            
-            // Add a slight delay for the glow effect
-            cursorGlow.style.left = `${posX}px`;
-            cursorGlow.style.top = `${posY}px`;
-        });
-    });
-
     // --- Gravity Toggle Logic ---
     const appContainer = document.getElementById('app-container');
     const gravityToggle = document.getElementById('gravity-toggle');
-    const gravityStatus = document.getElementById('gravity-status');
     const gravityIcon = gravityToggle.querySelector('i');
     
-    let isGravityOn = false; // Initially anti-gravity is fully active (gravity off)
+    let isGravityOn = true; // DEFAULT: True (Elements are static/grounded)
 
     gravityToggle.addEventListener('click', () => {
         isGravityOn = !isGravityOn;
+        gravityToggle.classList.toggle('active');
+
         if (isGravityOn) {
             appContainer.classList.remove('gravity-off');
             appContainer.classList.add('gravity-on');
-            gravityStatus.innerText = 'ON';
-            gravityIcon.classList.remove('fa-rocket');
-            gravityIcon.classList.add('fa-magnet');
-            // Remove float animation classes dynamically or handled by CSS class gravity-on overriding off
+            gravityIcon.className = 'fa-solid fa-magnet';
             document.documentElement.style.setProperty('--transition', 'all 0.1s ease'); 
         } else {
             appContainer.classList.remove('gravity-on');
             appContainer.classList.add('gravity-off');
-            gravityStatus.innerText = 'OFF';
-            gravityIcon.classList.remove('fa-magnet');
-            gravityIcon.classList.add('fa-rocket');
+            gravityIcon.className = 'fa-solid fa-rocket';
             document.documentElement.style.setProperty('--transition', 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)');
         }
     });
