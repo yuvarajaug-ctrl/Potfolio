@@ -5,7 +5,7 @@ A professional, high-performance, and deeply interactive developer portfolio fea
 ---
 
 ## 🚀 Live Demo
-[https://potfolio-three-phi.vercel.app/](https://potfolio-three-phi.vercel.app/)
+[https://yuvaraj-dev-portfolio.vercel.app/](https://yuvaraj-dev-portfolio.vercel.app/)
 
 ---
 
