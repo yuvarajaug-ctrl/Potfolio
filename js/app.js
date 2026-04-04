@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // --- Gravity Toggle Logic ---
     const appContainer = document.getElementById('app-container');
     const gravityToggle = document.getElementById('gravity-toggle');
     const gravityIcon = gravityToggle.querySelector('i');
-    
+
     let isGravityOn = true; // DEFAULT: True (Elements are static/grounded)
 
     gravityToggle.addEventListener('click', () => {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             appContainer.classList.remove('gravity-off');
             appContainer.classList.add('gravity-on');
             gravityIcon.className = 'fa-solid fa-magnet';
-            document.documentElement.style.setProperty('--transition', 'all 0.1s ease'); 
+            document.documentElement.style.setProperty('--transition', 'all 0.1s ease');
         } else {
             appContainer.classList.remove('gravity-on');
             appContainer.classList.add('gravity-off');
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = elem.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            
+
             elem.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
         });
 
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalActions = document.querySelector('.modal-actions');
     const projectData = {
         project1: { title: 'Portfolio', desc: 'A deeply interactive, physics-based portfolio built natively with ThreeJS and vanilla JavaScript. Features dynamic magnetic web elements, interactive modals, gravity toggling workflows, and a direct backend transmission feed via Web3Forms/Firebase.', source: 'https://github.com/yuvarajaug-ctrl/Portfolio.git', live: 'https://potfolio-three-phi.vercel.app/' },
-        project2: { title: 'Sketch to Code GenAI IDE', desc: 'Led and contributed to project development initiatives, building web applications and AI/ML models. Worked in collaborative teams, applying coding, testing, and deployment skills to deliver functional solutions and strengthen problem-solving abilities.', source: 'https://github.com/yuvarajaug-ctrl/sketch-to-code.git', live: 'https://sketch-to-code.onrender.com' },
+        project2: { title: 'Sketch to Code GenAI IDE', desc: 'Led and contributed to project development initiatives, building web applications and AI/ML models. Worked in collaborative teams, applying coding, testing, and deployment skills to deliver functional solutions and strengthen problem-solving abilities.', source: 'https://github.com/yuvarajaug-ctrl/sketch-to-code-GenAI-IDE', live: 'https://sketch-to-code.onrender.com' },
         project3: { title: 'Image Editing App', desc: 'An editing tool built with Python (using Pillow/OpenCV) for cropping, resizing, and applying filters to images.', source: '', live: '' },
         project4: { title: 'Smart Weather App', desc: 'Python-based application providing real-time weather forecasts with API integration and a Tkinter GUI.', source: '', live: '' },
         project5: { title: 'Expense Tracker App', desc: 'College Python project that manages daily expenses with add/edit/delete functionalities, and generates monthly reports.', source: '', live: '' }
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const toast = document.getElementById('toast');
         const toastMsg = document.getElementById('toast-msg');
         const toastIcon = toast.querySelector('i');
-        
+
         toastMsg.innerText = message;
         if (isError) {
             toastIcon.className = 'fa-solid fa-circle-xmark';
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toastIcon.className = 'fa-solid fa-circle-check';
             toastIcon.style.color = 'var(--neon-cyan)';
         }
-        
+
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 3000);
     }
@@ -184,23 +184,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Contact Form via Web3Forms ---
     const contactForm = document.querySelector('.contact-form');
     const submitBtn = contactForm ? contactForm.querySelector('.submit-btn') : null;
-    
+
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const originalBtnText = submitBtn.innerHTML;
             submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
             submitBtn.style.opacity = '0.7';
-            
+
             const formData = new FormData(contactForm);
-            
+
             try {
                 const response = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     body: formData
                 });
-                
+
                 if (response.ok) {
                     showToast('Message sent successfully!');
                     contactForm.reset();
