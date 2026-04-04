@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         project1: { title: 'Portfolio', desc: 'A deeply interactive, physics-based portfolio built natively with ThreeJS and vanilla JavaScript. Features dynamic magnetic web elements, interactive modals, gravity toggling workflows, and a direct backend transmission feed via Web3Forms/Firebase.', source: 'https://github.com/yuvarajaug-ctrl/Portfolio.git', live: 'https://potfolio-three-phi.vercel.app/' },
         project2: { title: 'Sketch to Code GenAI IDE', desc: 'Led and contributed to project development initiatives, building web applications and AI/ML models. Worked in collaborative teams, applying coding, testing, and deployment skills to deliver functional solutions and strengthen problem-solving abilities.', source: 'https://github.com/yuvarajaug-ctrl/sketch-to-code-GenAI-IDE', live: 'https://sketch-to-code.onrender.com' },
         project3: { title: 'Image Editing App', desc: 'An editing tool built with Python (using Pillow/OpenCV) for cropping, resizing, and applying filters to images.', source: '', live: '' },
-        project4: { title: 'Smart Weather App', desc: 'Python-based application providing real-time weather forecasts with API integration and a Tkinter GUI.', source: '', live: '' },
+        project4: { title: 'Smart Weather App', desc: 'Python-based application providing real-time weather forecasts with API integration and a Tkinter GUI.', source: 'https://github.com/yuvarajaug-ctrl/weather-vision-app', live: 'https://github.com/yuvarajaug-ctrl/weather-vision-app' },
         project5: { title: 'Expense Tracker App', desc: 'College Python project that manages daily expenses with add/edit/delete functionalities, and generates monthly reports.', source: '', live: '' }
     };
 
