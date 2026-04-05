@@ -46,23 +46,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Social Prompt Logic ---
-    let promptTimer;
-    function initSocialPrompt() {
-        // Using a fresh key 'prompt_check_final' to ensure it shows for this verification
-        if (!auth.currentUser && !sessionStorage.getItem('prompt_check_final')) {
-            promptTimer = setTimeout(() => {
-                const sp = document.getElementById('social-prompt');
-                if(sp) sp.style.display = 'flex';
-                console.log("Social prompt triggered.");
-            }, 1000); // Show after 1 second
+    window.triggerSocialPromptOnce = function() {
+        // Only show if not signed in and haven't seen it in this session
+        if (!auth.currentUser && !sessionStorage.getItem('prompt_shown_session')) {
+            const sp = document.getElementById('social-prompt');
+            if (sp) {
+                sp.style.display = 'flex';
+                // Remove the 'hidden' class just in case CSS state is weird
+                sp.classList.remove('hidden');
+            }
+            sessionStorage.setItem('prompt_shown_session', 'true');
+            console.log("Social prompt triggered by interaction.");
         }
-    }
+    };
 
     if (promptClose) {
         promptClose.addEventListener('click', () => {
-            socialPrompt.classList.add('hidden');
-            sessionStorage.setItem('prompt_check_final', 'true');
-            clearTimeout(promptTimer);
+            socialPrompt.style.display = 'none'; // Ensure it's hidden from view
+            sessionStorage.setItem('prompt_shown_session', 'true'); // Don't show again
         });
     }
 
@@ -119,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // User is signed out
                 if(loginBtn) loginBtn.style.display = 'inline-block';
                 if(userInfo) userInfo.style.display = 'none';
-                initSocialPrompt(); // Try to show prompt if signed out
+                // NO auto-popup call here
             }
         });
     }

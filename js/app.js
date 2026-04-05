@@ -70,6 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
         resumeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             resumeDropdown.classList.toggle('active');
+            
+            // Interaction Trigger for Social Prompt
+            if (typeof window.triggerSocialPromptOnce === 'function') {
+                window.triggerSocialPromptOnce();
+            }
         });
 
         // Close dropdown when clicking elsewhere
@@ -112,6 +117,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     sourceBtn.target = '_blank';
                     sourceBtn.className = 'btn-glow btn-small';
                     sourceBtn.innerHTML = '<i class="fa-brands fa-github"></i> Source Code';
+                    sourceBtn.addEventListener('click', () => {
+                        if (typeof window.triggerSocialPromptOnce === 'function') {
+                            window.triggerSocialPromptOnce();
+                        }
+                    });
                     modalActions.appendChild(sourceBtn);
                 }
                 if (data.live) {
@@ -120,6 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     liveBtn.target = '_blank';
                     liveBtn.className = 'btn-glow btn-small';
                     liveBtn.innerHTML = '<i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo';
+                    liveBtn.addEventListener('click', () => {
+                        if (typeof window.triggerSocialPromptOnce === 'function') {
+                            window.triggerSocialPromptOnce();
+                        }
+                    });
                     modalActions.appendChild(liveBtn);
                 }
                 if (!data.source && !data.live) {
