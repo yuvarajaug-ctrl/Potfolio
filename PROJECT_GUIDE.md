@@ -97,7 +97,7 @@ The configuration is stored in `js/firebase-auth.js`.
 3. Update `index.html` with a new `.project-card` using the matching `data-project` ID.
 
 ### To Update Your Resume
-Simply replace the file in `assets/Yuvaraj_P_Resume.pdf`. The website links to this file automatically.
+Simply replace the file in `assets/Yuvaraj_Resume.pdf`. The website links to this file automatically.
 
 ---
 
