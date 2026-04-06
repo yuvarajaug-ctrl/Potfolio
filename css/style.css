@@ -158,6 +158,7 @@ p {
 .delay-2 { animation-delay: 2s !important; }
 .delay-3 { animation-delay: 3s !important; }
 .delay-4 { animation-delay: 4s !important; }
+.delay-5 { animation-delay: 5s !important; }
 
 /* Navbar */
 .navbar {
