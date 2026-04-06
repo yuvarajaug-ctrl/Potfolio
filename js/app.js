@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         project3: { title: 'Image Editing App', desc: 'An editing tool built with Python (using Pillow/OpenCV) for cropping, resizing, and applying filters to images.', source: 'https://github.com/yuvarajaug-ctrl/Image-Editing-App', live: 'https://github.com/yuvarajaug-ctrl/Image-Editing-App/blob/main/ImageEditingApp.exe' },
         project4: { title: 'Smart Weather App', desc: 'Python-based application providing real-time weather forecasts with API integration and a Tkinter GUI.', source: 'https://github.com/yuvarajaug-ctrl/weather-vision-app', live: 'https://github.com/yuvarajaug-ctrl/weather-vision-app' },
         project5: { title: 'Expense Tracker App', desc: 'College Python project that manages daily expenses with add/edit/delete functionalities, and generates monthly reports.', source: 'https://github.com/yuvarajaug-ctrl/Expence-Tracker-App', live: 'https://yuvarajaug-ctrl.github.io/Expence-Tracker-App/' },
-        project6: { title: 'AI Agent RAG Search', desc: 'An advanced modular system featuring an AI RAG Agent (FAISS/Sentence Transformers) and an AI Web Search Agent (Groq/DDG Fallback). Built for high-speed inference and reliable information retrieval using Llama-3.3 and Gemini 1.5 Flash.', source: 'https://github.com/yuvarajaug-ctrl/ai-agent-rag-search', live: 'https://github.com/yuvarajaug-ctrl/ai-agent-rag-search' }
+        project6: { title: 'AI Agent RAG Search', desc: 'AI Agent system with PDF-based RAG and real-time web search, using FAISS, embeddings, and LLMs for accurate answer generation.', source: 'https://github.com/yuvarajaug-ctrl/ai-agent-rag-search', live: 'https://github.com/yuvarajaug-ctrl/ai-agent-rag-search' }
     };
 
     projectCards.forEach(card => {
